@@ -67,16 +67,25 @@
   #
   #  /etc/profiles/per-user/yorick/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-     EDITOR = "vim";
-     MOZ_ENABLE_WAYLAND = 0;
+  home = {
+    sessionVariables = {
+       EDITOR = "vim";
+       MOZ_ENABLE_WAYLAND = 0;
+    };
   };
 
   # Let Home Manager install and manage itself.
   programs = {
-    home-manager.enable = true;
-
-    bash.enable = true;
+#    bash = {
+##      enable = true;
+##      shellAliases = {
+##        nixos-rebuild = "sudo nixos-rebuild switch --flake ~/nixos/";
+##      };
+#      sessionVariables = {
+#         EDITOR = "vim";
+#         MOZ_ENABLE_WAYLAND = 0;
+#      };
+#    };
 
     git = {
       enable = true;
@@ -147,7 +156,23 @@
 #        }
 #      ];
     };
+
+    zsh = {
+      enable = true;
+      enableCompletion = true;
+      autosuggestion.enable = true;
+      syntaxHighlighting.enable = true;
+
+      shellAliases = {
+        update = "sudo nixos-rebuild switch --flake ~/nixos/";
+      };
+      history = {
+        size = 10000;
+        path = "${config.xdg.dataHome}/zsh/history";
+      };
+
+    };
+
+    home-manager.enable = true;
   };
-
-
 }
