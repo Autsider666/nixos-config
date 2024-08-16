@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 #      ./main-user
+      ./gnome.nix
       inputs.home-manager.nixosModules.default
     ];
 
@@ -51,18 +52,19 @@
     LC_TIME = "nl_NL.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
+#Moved to gnome.nix
+#  # Enable the X11 windowing system.
+#  services.xserver.enable = true;
+#
+#  # Enable the GNOME Desktop Environment.
+#  services.xserver.displayManager.gdm.enable = true;
+#  services.xserver.desktopManager.gnome.enable = true;
+#
+#  # Configure keymap in X11
+#  services.xserver.xkb = {
+#    layout = "us";
+#    variant = "";
+#  };
 
   # Enable CUPS to print documents.
   services.printing.enable = false;
@@ -176,4 +178,6 @@
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
 
+  programs.hyprland.enable = true;
+  programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 }
