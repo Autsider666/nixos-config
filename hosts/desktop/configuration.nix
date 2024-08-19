@@ -118,12 +118,15 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim
-    lf
+
     obsidian
     thunderbird
     discord
     jetbrains.phpstorm
     whatsapp-for-linux
+    helvum
+    openrgb
+    blanket
 
     # mangohud FPS overlay for steam?
     # protonup # Continue watching https://www.youtube.com/watch?v=qlfm3MEbqYA
@@ -171,13 +174,25 @@
   #};
 
   services.xserver.videoDrivers = ["nvidia"];
-  hardware.nvidia.modesetting.enable = true;
+
+  hardware = {
+    nvidia = {
+      modesetting.enable = true;
+
+      powerManagement.enable = false;
+      powerManagement.finegrained = false;
+      open = false;
+
+      nvidiaSettings = true;
+
+    };
+  };
+
+  # Fixing suspend/wakeup issues https://wiki.hyprland.org/Nvidia/#suspendwakeup-issues
+  boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" "nvidia-drm.modeset=1"];
 
   # STEAM
   programs.steam.enable = true;
   programs.steam.gamescopeSession.enable = true;
   programs.gamemode.enable = true;
-
-  programs.hyprland.enable = true;
-  programs.hyprland.package = inputs.hyprland.packages."${pkgs.system}".hyprland;
 }

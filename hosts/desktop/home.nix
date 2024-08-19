@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the paths it should
-  # manage.
-  home.username = "yorick";
-  home.homeDirectory = "/home/yorick";
+  home = {
+    username = "yorick";
+    homeDirectory = "/home/yorick";
+  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -75,29 +75,15 @@
     };
   };
 
-  wayland.windowManager.hyprland = {
+  gtk = {
     enable = true;
-    xwayland.enable = true;
-    systemd.enable = true;
-
-#    settings = {
-#
-#    };
+    theme = {
+      package = pkgs.dracula-theme;
+      name = "dracula-theme";
+    };
   };
 
-  # Let Home Manager install and manage itself.
   programs = {
-#    bash = {
-##      enable = true;
-##      shellAliases = {
-##        nixos-rebuild = "sudo nixos-rebuild switch --flake ~/nixos/";
-##      };
-#      sessionVariables = {
-#         EDITOR = "vim";
-#         MOZ_ENABLE_WAYLAND = 0;
-#      };
-#    };
-
     git = {
       enable = true;
       lfs.enable = true;
@@ -176,7 +162,8 @@
 
       shellAliases = {
         update = "sudo nixos-rebuild switch --flake ~/nixos/";
-        test = "sudo nixos-rebuild test --flake ~/nixos/";
+        update-test = "sudo nixos-rebuild test --flake ~/nixos/";
+        update-boot = "sudo nixos-rebuild test --flake ~/nixos/";
       };
       history = {
         size = 10000;
