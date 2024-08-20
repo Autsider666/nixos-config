@@ -16,20 +16,39 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    gnomeExtensions.compact-top-bar
-    gnomeExtensions.gtile
-    gnomeExtensions.dash-to-panel
-    gnomeExtensions.arcmenu
-    gnomeExtensions.just-perfection
-    gnomeExtensions.appindicator
-    gnomeExtensions.tactile
-    gnomeExtensions.tiling-assistant
-    gnomeExtensions.quick-settings-tweaker
-    gnomeExtensions.ddterm
-    gnomeExtensions.logo-menu
-    gnomeExtensions.top-bar-organizer
-  ];
+  environment.systemPackages = (with pkgs; [
+
+    endeavour # Task manager
+    gnome-solanum # Pomodoro
+  ]) ++ (with pkgs.gnomeExtensions; [
+    compact-top-bar
+    dash-to-panel
+    arcmenu
+    just-perfection
+    appindicator
+    tactile
+    tiling-assistant
+    quick-settings-tweaker
+    ddterm
+    logo-menu
+    ]);
+
+  environment.gnome.excludePackages = (with pkgs; [
+    gnome-photos
+    gnome-tour
+    gedit # text editor
+    totem # video player
+    gnome-text-editor
+    cheese # webcam tool
+    epiphany # web browser
+    geary # email reader
+    evince # document viewer
+  ]) ++ (with pkgs.gnome; [
+    gnome-music
+    gnome-characters
+    gnome-weather
+    simple-scan
+  ]);
 
   programs = {
     kdeconnect = {

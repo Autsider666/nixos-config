@@ -164,6 +164,7 @@
         update = "sudo nixos-rebuild switch --flake ~/nixos/";
         update-test = "sudo nixos-rebuild test --flake ~/nixos/";
         update-boot = "sudo nixos-rebuild test --flake ~/nixos/";
+        gc = "nix-collect-garbage --delete-older-than 7d";
       };
       history = {
         size = 10000;

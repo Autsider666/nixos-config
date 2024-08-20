@@ -125,7 +125,6 @@
     jetbrains.phpstorm
     whatsapp-for-linux
     helvum
-    openrgb
     blanket
 
     # mangohud FPS overlay for steam?
