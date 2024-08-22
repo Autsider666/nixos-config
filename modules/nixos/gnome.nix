@@ -17,7 +17,6 @@
   };
 
   environment.systemPackages = (with pkgs; [
-
     endeavour # Task manager
     gnome-solanum # Pomodoro
   ]) ++ (with pkgs.gnomeExtensions; [
@@ -43,11 +42,11 @@
     epiphany # web browser
     geary # email reader
     evince # document viewer
+    simple-scan
   ]) ++ (with pkgs.gnome; [
     gnome-music
     gnome-characters
     gnome-weather
-    simple-scan
   ]);
 
   programs = {

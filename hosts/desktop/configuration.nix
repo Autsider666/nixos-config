@@ -9,7 +9,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
 #      ./main-user
-      ./gnome.nix
+      ../../modules/nixos/gnome.nix
+      ../../modules/nixos/spotify.nix
       inputs.home-manager.nixosModules.default
     ];
 
