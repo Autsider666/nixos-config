@@ -122,7 +122,11 @@
 #        rs = "remote show";
         st = "status";
       };
-#      extraConfig = {
+      extraConfig = {
+        push = {
+          autoSetupRemote = true;
+        };
+      };
 #        merge = {
 #          tool = "vimdiff";
 #          conflictstyle = "diff3";
@@ -163,14 +167,25 @@
       shellAliases = {
         update = "sudo nixos-rebuild switch --flake ~/nixos/";
         update-test = "sudo nixos-rebuild test --flake ~/nixos/";
-        update-boot = "sudo nixos-rebuild test --flake ~/nixos/";
+        update-boot = "sudo nixos-rebuild boot --flake ~/nixos/";
         gc = "nix-collect-garbage --delete-older-than 7d";
       };
+
       history = {
-        size = 10000;
         path = "${config.xdg.dataHome}/zsh/history";
+        size = 10000;
+        save = 10000;
+        share = true;
       };
 
+      historySubstringSearch = {
+        enable = true;
+      };
+
+      oh-my-zsh = {
+        enable = true;
+        theme = "robbyrussell";
+      };
     };
 
     home-manager.enable = true;

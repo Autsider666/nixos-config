@@ -11,6 +11,7 @@
 #      ./main-user
       ../../modules/nixos/gnome.nix
       ../../modules/nixos/spotify.nix
+      ../../modules/nixos/nodejs.nix
       inputs.home-manager.nixosModules.default
     ];
 
@@ -89,7 +90,17 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  programs.zsh.enable = true;
+  programs = {
+    zsh.enable = true;
+    firefox.enable = true;
+
+    # STEAM
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
+    gamemode.enable = true;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.yorick = {
@@ -109,9 +120,6 @@
     };
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
@@ -122,16 +130,18 @@
 
     obsidian
     thunderbird
-    discord
+    (discord.override { nss = nss_latest; })
     jetbrains.phpstorm
     whatsapp-for-linux
     helvum
     blanket
+    planify
+    synology-drive-client
+    lutris # linux game hub/client
 
-    # mangohud FPS overlay for steam?
+    # mangohud # FPS overlay for steam?
     # protonup # Continue watching https://www.youtube.com/watch?v=qlfm3MEbqYA
-    # lutris linux game hub/client
-#  wget
+    # wget
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -166,21 +176,17 @@
     enable32Bit = true;
   };
 
-  # Not needed because of steam, but useful to add anyway
-  #hardware.opengl = {
-  #  enable = true;
-  #  # driSupport = true; # Removed for unstable
-  #  driSupport32Bit = true;
-  #};
-
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware = {
     nvidia = {
       modesetting.enable = true;
 
-      powerManagement.enable = false;
-      powerManagement.finegrained = false;
+      powerManagement = {
+        enable = false;
+        finegrained = false;
+      };
+
       open = false;
 
       nvidiaSettings = true;
@@ -190,9 +196,4 @@
 
   # Fixing suspend/wakeup issues https://wiki.hyprland.org/Nvidia/#suspendwakeup-issues
   boot.kernelParams = [ "nvidia.NVreg_PreserveVideoMemoryAllocations=1" "nvidia-drm.modeset=1"];
-
-  # STEAM
-  programs.steam.enable = true;
-  programs.steam.gamescopeSession.enable = true;
-  programs.gamemode.enable = true;
 }
