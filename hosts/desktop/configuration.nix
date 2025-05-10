@@ -129,15 +129,32 @@
     vim
 
     obsidian
-    thunderbird
     (discord.override { nss = nss_latest; })
     jetbrains.phpstorm
-    whatsapp-for-linux
     helvum
+    pavucontrol
+    paprefs
     blanket
     planify
-    synology-drive-client
-    lutris # linux game hub/client
+
+    signal-desktop
+
+    # synology-drive-client
+    # lutris # linux game hub/client
+
+    ckan # Kerbal space program
+
+    vivaldi
+
+    inputs.zen-browser.packages."${system}".default
+
+    joystickwake
+
+    # https://github.com/NixOS/nixpkgs/blob/2b6b141ce264fd3e5eeb96be2ca2ed53f8ede0d7/doc/packages/cataclysm-dda.section.md
+    cataclysm-dda
+    starsector
+
+    godot_4
 
     # mangohud # FPS overlay for steam?
     # protonup # Continue watching https://www.youtube.com/watch?v=qlfm3MEbqYA

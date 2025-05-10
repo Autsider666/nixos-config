@@ -36,17 +36,18 @@
     gnome-photos
     gnome-tour
     gedit # text editor
-    totem # video player
+    # totem # video player
     gnome-text-editor
     cheese # webcam tool
     epiphany # web browser
     geary # email reader
     evince # document viewer
     simple-scan
-  ]) ++ (with pkgs.gnome; [
     gnome-music
     gnome-characters
     gnome-weather
+    gnome-contacts
+    gnome-maps
   ]);
 
   programs = {

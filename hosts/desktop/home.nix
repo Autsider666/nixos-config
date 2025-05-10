@@ -87,7 +87,7 @@
     git = {
       enable = true;
       lfs.enable = true;
-      userName = "Torick";
+      userName = "Yorick";
       userEmail = "yorickvanklinken@gmail.com";
 #      signing = { # https://jeppesen.io/git-commit-sign-nix-home-manager-ssh/
 #        key = "5C841D3CFDFEC4E0";
